@@ -1,0 +1,3 @@
+build-tools;35.0.1
+platforms;android-35
+platform-tools

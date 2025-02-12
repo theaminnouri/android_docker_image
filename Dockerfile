@@ -2,7 +2,6 @@ FROM ubuntu:24.04
 
 # Add metadata labels
 LABEL author="theAminNouri <theaminnouri@gmail.com>" \
-      version="0.9" \
       description="A Docker image for building Android projects"
 
 USER root

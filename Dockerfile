@@ -1,8 +1,8 @@
-FROM eclipse-temurin:21-jdk-jammy
+FROM ubuntu:24.04
 
 # Add metadata labels
 LABEL author="theAminNouri <theaminnouri@gmail.com>" \
-      version="0.8" \
+      version="0.9" \
       description="A Docker image for building Android projects"
 
 ARG GRADLE_VERSION=8.10.2
@@ -12,6 +12,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ENV ANDROID_HOME="/android-sdk"
 ENV PATH="$PATH:${ANDROID_HOME}/tools:/opt/gradle/gradle-${GRADLE_VERSION}/bin"
+ENV ANDROID_BUILD_TOOLS_VERSION=35.0.1
 
 # Install necessary libraries
 RUN apt-get update \

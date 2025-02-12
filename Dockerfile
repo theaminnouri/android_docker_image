@@ -12,7 +12,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ENV ANDROID_HOME="/android-sdk"
 ENV PATH="$PATH:${ANDROID_HOME}/tools:/opt/gradle/gradle-${GRADLE_VERSION}/bin"
-ENV ANDROID_BUILD_TOOLS_VERSION=35.0.1
+ENV ANDROID_BUILD_TOOLS_VERSION="35.0.1"
+ENV ANDROID_PLATFORMS_VERSION="android-35"
 
 # Install necessary libraries
 RUN apt-get update \
@@ -40,5 +41,6 @@ RUN yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME
         && ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --update
 
 
-ADD sdk_packages.txt .
-RUN xargs ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} < sdk_packages.txt
+RUN ./${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \
+    "platforms;$ANDROID_PLATFORMS_VERSION" \
+    "platform-tools"

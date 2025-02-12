@@ -5,6 +5,8 @@ LABEL author="theAminNouri <theaminnouri@gmail.com>" \
       version="0.9" \
       description="A Docker image for building Android projects"
 
+USER root
+
 ARG GRADLE_VERSION=8.10.2
 ARG SDK_TOOLS_VERSION=11076708
 ARG ANDROID_EMULATOR_VERSION=12836668

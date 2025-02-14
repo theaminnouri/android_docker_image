@@ -30,7 +30,7 @@ RUN wget --output-document=gradle-${GRADLE_VERSION}-all.zip https://downloads.gr
     && mkdir -p ${ANDROID_HOME} \
     && wget --output-document=android-sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-${SDK_TOOLS_VERSION}_latest.zip \
     && unzip ./android-sdk.zip -d ${ANDROID_HOME} \
-    && chmod 777  ${ANDROID_HOME}/android-sdk \
+    && chmod 777  ${ANDROID_HOME} \
     && rm ./android-sdk.zip \
     && mkdir -p ~/.android \
     && touch ~/.android/repositories.cfg \

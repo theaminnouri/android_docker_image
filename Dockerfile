@@ -33,9 +33,9 @@ RUN wget --output-document=gradle-${GRADLE_VERSION}-all.zip https://downloads.gr
     && touch ~/.android/repositories.cfg
 
 
-RUN yes | ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --licenses \
-        && ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --update
+RUN yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses \
+        && sdkmanager --sdk_root=${ANDROID_HOME} --update
 
 
 ADD sdk_packages.txt .
-RUN xargs ${ANDROID_HOME}/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} < sdk_packages.txt
+RUN xargs sdkmanager --sdk_root=${ANDROID_HOME} < sdk_packages.txt

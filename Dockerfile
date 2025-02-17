@@ -1,6 +1,6 @@
 FROM ubuntu:24.04
 
-# Add metadata labels
+# Metadata labels
 LABEL author="theAminNouri <theaminnouri@gmail.com>" \
       description="A Docker image for building Android projects"
 
@@ -11,7 +11,7 @@ ARG SDK_TOOLS_VERSION=11076708
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV ANDROID_HOME="/android-sdk"
-ENV PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/tools/bin:/opt/gradle/gradle-${GRADLE_VERSION}/bin"
+ENV PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:/opt/gradle/gradle-${GRADLE_VERSION}/bin"
 
 
 # Install necessary libraries
@@ -27,10 +27,12 @@ RUN wget --output-document=gradle-${GRADLE_VERSION}-all.zip https://downloads.gr
     && rm ./gradle-${GRADLE_VERSION}-all.zip \
     && mkdir -p ${ANDROID_HOME} \
     && wget --output-document=android-sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-${SDK_TOOLS_VERSION}_latest.zip \
-    && unzip ./android-sdk.zip -d ${ANDROID_HOME} \
+    && unzip ./android-sdk.zip -d ${ANDROID_HOME}\temp \
     && rm ./android-sdk.zip \
-    && mkdir -p ~/.android \
-    && touch ~/.android/repositories.cfg
+    && mkdir ${ANDROID_HOME}/cmdline-tools \
+    && mkdir ${ANDROID_HOME}/cmdline-tools/latest \
+    && mv ${ANDROID_HOME}/temp/* ${ANDROID_HOME}/cmdline-tools/latest/ \
+    && rm -rf ${ANDROID_HOME}/temp
 
 
 RUN yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses \

@@ -32,7 +32,7 @@ RUN wget --output-document=gradle-${GRADLE_VERSION}-all.zip https://downloads.gr
     && rm ./android-sdk.zip \
     && mkdir ${ANDROID_HOME}/cmdline-tools \
     && mkdir ${ANDROID_HOME}/cmdline-tools/latest \
-    && mv ${ANDROID_HOME}/temp/* ${ANDROID_HOME}/cmdline-tools/latest/ \
+    && mv ${ANDROID_HOME}/temp/cmdline-tools/* ${ANDROID_HOME}/cmdline-tools/latest/ \
     && rm -rf ${ANDROID_HOME}/temp
 
 

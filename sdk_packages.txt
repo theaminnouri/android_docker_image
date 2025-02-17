@@ -2,4 +2,4 @@ build-tools;35.0.1
 emulator
 platforms;android-35
 platform-tools
-system-images;android-35;google_apis;x86_64
+system-images;android-35;google_apis;arm64-v8a
